@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
   title: PersonService API
-  description: This is the API of InfinityApp by jonnef
+  description: This is the person-service API of InfinityApplication by jonnef
   version: 1.0.0
 servers:
   - url: http://infinityapp-api.com
