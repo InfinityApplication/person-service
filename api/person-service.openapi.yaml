@@ -67,58 +67,53 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/person'     
-  /person/{username}:
-  # todo: not username, id
+                $ref: '#/components/schemas/person'
     delete:
       tags:
         - Person
-      description: Deleta a Person by username
+      description: Deleta a Person by id
       parameters:
         - in: path
-          name: username
+          name: id
           required: true
           schema:
-            type: string
+            type: integer
       responses:
         200:
           description: Successfully deleted a Person
 components:
   schemas:
     person:
+      allOf:
+        - $ref: '#/components/schemas/id'
+        - $ref: '#/components/schemas/personInfo'
+    personInfo:
       type: object
       properties:
-        PEID:
-          type: integer
-          nullable: false
         username:
           type: string
           example: mmuster
-          nullable: false
         firstName:
           type: string
           example: Max
-          nullable: false
         lastName:
           type: string
           example: Mustermann
-          nullable: false
         dateOfBirth:
           type: string
           format: date
-          example: 19.07.2000
-          # todo: format
-          nullable: false
+          example: 2000-07-27
         gender:
           type: string
-          example: male (male/female/diverse)
-          # todo: string-enum
+          enum:
+            - male
+            - female
+            - diverse
         weight:
           description: weight in kg
           type: number
-          format: double
+          format: float
           example: 76.4
-          # todo: format
         height:
           description: height in cm
           type: integer
@@ -126,34 +121,13 @@ components:
     persons:
       type: array
       items:
-        properties:
-          PEID:
-            type: integer
-            nullable: false
-          username:
-            type: string
-            example: mmuster
-            nullable: false
-          firstName:
-            type: string
-            example: Max
-            nullable: false
-          lastName:
-            type: string
-            example: Mustermann
-            nullable: false
-          dateOfBirth:
-            type: string
-            format: date
-            example: 19.07.2000
-            nullable: false
-          gender:
-            type: string
-            example: male (male/female/diverse)
-          weight:
-            type: number
-            format: double
-            example: 76.4
-          height:
-            type: integer
-            example: 187
+        allOf:
+          - $ref: '#/components/schemas/id'
+          - $ref: '#/components/schemas/person'
+    id:
+      properties:
+        PEID:
+          type: integer
+          nullable: false
+      required:
+        - PEID
