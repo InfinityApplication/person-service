@@ -10,20 +10,9 @@ paths:
   /person:
     description: Person Resource
     get:
-      description: Operation to Fetch Persons
-      parameters:
-        - in: query
-          name: username
-          required: true
-          schema:
-            type: string
-            example: jonnef
-        - in: query
-          name: PEID
-          required: true
-          schema:
-            type: integer
-            example: 0
+      tags:
+      - Person
+      description: Get a list of all Persons
       responses:
         200:
           description: Success!
@@ -32,6 +21,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/persons'
     post:
+      tags:
+        - Person
       description: Add a new Person
       requestBody:
         content:
@@ -41,9 +32,12 @@ paths:
       responses:
         201:
           description: Successfully added
-  /person{peid}:
+  /person/{peid}:
     description: Get Person based on Path Parameter
     get:
+      tags:
+      - Person
+      description: Get a Person by PEID
       parameters:
         - in: path
           name: PEID
@@ -58,6 +52,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/persons'
     patch:
+      tags:
+      - Person
+      description: Update a Person by PEID
       parameters:
         - in: path
           name: PEID
@@ -71,9 +68,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/person'     
-  /person{username}:
-    description: Delete a Person by username
+  /person/{username}:
+  # todo: not username, id
     delete:
+      tags:
+        - Person
       description: Deleta a Person by username
       parameters:
         - in: path
@@ -108,15 +107,20 @@ components:
           type: string
           format: date
           example: 19.07.2000
+          # todo: format
           nullable: false
         gender:
           type: string
           example: male (male/female/diverse)
+          # todo: string-enum
         weight:
+          description: weight in kg
           type: number
           format: double
           example: 76.4
+          # todo: format
         height:
+          description: height in cm
           type: integer
           example: 187
     persons:
