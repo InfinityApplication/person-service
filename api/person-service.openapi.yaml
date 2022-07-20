@@ -1,0 +1,155 @@
+openapi: 3.0.3
+info:
+  title: PersonService API
+  description: This is the API of InfinityApp by jonnef
+  version: 1.0.0
+servers:
+  - url: http://infinityapp-api.com
+  - url: http://jonnef-api.com
+paths:
+  /person:
+    description: Person Resource
+    get:
+      description: Operation to Fetch Persons
+      parameters:
+        - in: query
+          name: username
+          required: true
+          schema:
+            type: string
+            example: jonnef
+        - in: query
+          name: PEID
+          required: true
+          schema:
+            type: integer
+            example: 0
+      responses:
+        200:
+          description: Success!
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/persons'
+    post:
+      description: Add a new Person
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/person'
+      responses:
+        201:
+          description: Successfully added
+  /person{peid}:
+    description: Get Person based on Path Parameter
+    get:
+      parameters:
+        - in: path
+          name: PEID
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Success Response with Path Parameter
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/persons'
+    patch:
+      parameters:
+        - in: path
+          name: PEID
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Data for Person with {PEID} changed! 
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/person'     
+  /person{username}:
+    description: Delete a Person by username
+    delete:
+      description: Deleta a Person by username
+      parameters:
+        - in: path
+          name: username
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Successfully deleted a Person
+components:
+  schemas:
+    person:
+      type: object
+      properties:
+        PEID:
+          type: integer
+          nullable: false
+        username:
+          type: string
+          example: mmuster
+          nullable: false
+        firstName:
+          type: string
+          example: Max
+          nullable: false
+        lastName:
+          type: string
+          example: Mustermann
+          nullable: false
+        dateOfBirth:
+          type: string
+          format: date
+          example: 19.07.2000
+          nullable: false
+        gender:
+          type: string
+          example: male (male/female/diverse)
+        weight:
+          type: number
+          format: double
+          example: 76.4
+        height:
+          type: integer
+          example: 187
+    persons:
+      type: array
+      items:
+        properties:
+          PEID:
+            type: integer
+            nullable: false
+          username:
+            type: string
+            example: mmuster
+            nullable: false
+          firstName:
+            type: string
+            example: Max
+            nullable: false
+          lastName:
+            type: string
+            example: Mustermann
+            nullable: false
+          dateOfBirth:
+            type: string
+            format: date
+            example: 19.07.2000
+            nullable: false
+          gender:
+            type: string
+            example: male (male/female/diverse)
+          weight:
+            type: number
+            format: double
+            example: 76.4
+          height:
+            type: integer
+            example: 187
