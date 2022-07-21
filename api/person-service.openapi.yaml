@@ -122,7 +122,6 @@ components:
       type: array
       items:
         allOf:
-          - $ref: '#/components/schemas/id'
           - $ref: '#/components/schemas/person'
     id:
       properties:
