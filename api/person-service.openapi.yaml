@@ -85,7 +85,7 @@ components:
   schemas:
     person:
       allOf:
-        - $ref: '#/components/schemas/id'
+        - $ref: '#/components/schemas/baseEntity'
         - $ref: '#/components/schemas/personInfo'
     personInfo:
       type: object
@@ -109,11 +109,17 @@ components:
             - male
             - female
             - diverse
-        weight:
-          description: weight in kg
-          type: number
-          format: float
-          example: 76.4
+        weightInfo:
+          type: array
+          items:
+            properties:
+              weight:
+                type: number
+                format: float
+              date:
+                type: string
+                format: date
+            description: weight in kg, date format = YYYY.MM.DD
         height:
           description: height in cm
           type: integer
@@ -123,10 +129,10 @@ components:
       items:
         allOf:
           - $ref: '#/components/schemas/person'
-    id:
+    baseEntity:
       properties:
-        PEID:
+        ID:
           type: integer
           nullable: false
       required:
-        - PEID
+        - ID
