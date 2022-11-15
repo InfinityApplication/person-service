@@ -1,0 +1,165 @@
+openapi: 3.0.3
+info:
+  description: This is the person-service API of InfinityApplication by jonnef
+  title: PersonService API
+  version: 1.0.0
+servers:
+- url: http://infinityapp-api.com
+- url: http://jonnef-api.com
+paths:
+  /person:
+    description: Person Resource
+    get:
+      description: Get a list of all Persons
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/persons'
+          description: Success!
+      tags:
+      - person
+      x-accepts: application/json
+      x-tags:
+      - tag: person
+    post:
+      description: Add a new Person
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/person'
+      responses:
+        "201":
+          description: Successfully added
+      tags:
+      - person
+      x-content-type: application/json
+      x-accepts: application/json
+      x-tags:
+      - tag: person
+  /person/{id}:
+    delete:
+      description: Deleta a Person by ID
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          description: Successfully deleted a Person
+      tags:
+      - person
+      x-accepts: application/json
+      x-tags:
+      - tag: person
+    description: Get Person based on Path Parameter
+    get:
+      description: Get a Person by ID
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/persons'
+          description: Success Response with Path Parameter
+      tags:
+      - person
+      x-accepts: application/json
+      x-tags:
+      - tag: person
+    patch:
+      description: Update a Person by ID
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/person'
+          description: "Data for Person with {ID} changed!"
+      tags:
+      - person
+      x-accepts: application/json
+      x-tags:
+      - tag: person
+components:
+  schemas:
+    person:
+      allOf:
+      - $ref: '#/components/schemas/baseEntity'
+      - $ref: '#/components/schemas/personInfo'
+    personInfo:
+      properties:
+        username:
+          example: mmuster
+          type: string
+        firstName:
+          example: Max
+          type: string
+        lastName:
+          example: Mustermann
+          type: string
+        dateOfBirth:
+          example: 2000-07-27
+          format: date
+          type: string
+        gender:
+          enum:
+          - male
+          - female
+          - diverse
+          type: string
+        weightInfo:
+          items:
+            $ref: '#/components/schemas/personInfo_weightInfo_inner'
+          type: array
+        height:
+          description: height in cm
+          example: 187
+          type: integer
+      type: object
+    persons:
+      items:
+        $ref: '#/components/schemas/persons_inner'
+      type: array
+    baseEntity:
+      properties:
+        id:
+          example: 0
+          nullable: false
+          type: integer
+      required:
+      - id
+    personInfo_weightInfo_inner:
+      description: "weight in kg, date format = YYYY.MM.DD"
+      properties:
+        weight:
+          format: float
+          type: number
+        date:
+          format: date
+          type: string
+    persons_inner:
+      allOf:
+      - $ref: '#/components/schemas/person'

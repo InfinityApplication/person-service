@@ -11,7 +11,7 @@ paths:
     description: Person Resource
     get:
       tags:
-      - Person
+      - person
       description: Get a list of all Persons
       responses:
         200:
@@ -22,7 +22,7 @@ paths:
                 $ref: '#/components/schemas/persons'
     post:
       tags:
-        - Person
+        - person
       description: Add a new Person
       requestBody:
         content:
@@ -32,15 +32,15 @@ paths:
       responses:
         201:
           description: Successfully added
-  /person/{peid}:
+  /person/{id}:
     description: Get Person based on Path Parameter
     get:
       tags:
-      - Person
-      description: Get a Person by PEID
+      - person
+      description: Get a Person by ID
       parameters:
         - in: path
-          name: PEID
+          name: id
           required: true
           schema:
             type: integer
@@ -53,25 +53,25 @@ paths:
                 $ref: '#/components/schemas/persons'
     patch:
       tags:
-      - Person
-      description: Update a Person by PEID
+      - person
+      description: Update a Person by ID
       parameters:
         - in: path
-          name: PEID
+          name: id
           required: true
           schema:
             type: integer
       responses:
         200:
-          description: Data for Person with {PEID} changed! 
+          description: Data for Person with {ID} changed! 
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/person'
     delete:
       tags:
-        - Person
-      description: Deleta a Person by id
+        - person
+      description: Deleta a Person by ID
       parameters:
         - in: path
           name: id
@@ -131,8 +131,9 @@ components:
           - $ref: '#/components/schemas/person'
     baseEntity:
       properties:
-        ID:
+        id:
           type: integer
           nullable: false
+          example: 0
       required:
-        - ID
+        - id

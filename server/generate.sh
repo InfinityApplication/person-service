@@ -3,10 +3,10 @@
 openapi-generator-cli generate \
         -g spring \
         --library spring-boot \
-        -i address-service.openapi.yaml
+        -i person-service.openapi.yaml
         -o ${PWD} \
         -p groupId=de.jonnef \
-        -p artifactId=address \
+        -p artifactId=person \
         -p artifactVersion=1.0.0 \
         \
         -p sourceFolder=src/main/gen \
