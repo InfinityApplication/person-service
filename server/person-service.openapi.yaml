@@ -1,0 +1,138 @@
+openapi: 3.0.3
+info:
+  title: PersonService API
+  description: This is the person-service API of InfinityApplication by jonnef
+  version: 1.0.0
+servers:
+  - url: http://infinityapp-api.com
+  - url: http://jonnef-api.com
+paths:
+  /person:
+    description: Person Resource
+    get:
+      tags:
+      - Person
+      description: Get a list of all Persons
+      responses:
+        200:
+          description: Success!
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/persons'
+    post:
+      tags:
+        - Person
+      description: Add a new Person
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/person'
+      responses:
+        201:
+          description: Successfully added
+  /person/{peid}:
+    description: Get Person based on Path Parameter
+    get:
+      tags:
+      - Person
+      description: Get a Person by PEID
+      parameters:
+        - in: path
+          name: PEID
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Success Response with Path Parameter
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/persons'
+    patch:
+      tags:
+      - Person
+      description: Update a Person by PEID
+      parameters:
+        - in: path
+          name: PEID
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Data for Person with {PEID} changed! 
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/person'
+    delete:
+      tags:
+        - Person
+      description: Deleta a Person by id
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Successfully deleted a Person
+components:
+  schemas:
+    person:
+      allOf:
+        - $ref: '#/components/schemas/baseEntity'
+        - $ref: '#/components/schemas/personInfo'
+    personInfo:
+      type: object
+      properties:
+        username:
+          type: string
+          example: mmuster
+        firstName:
+          type: string
+          example: Max
+        lastName:
+          type: string
+          example: Mustermann
+        dateOfBirth:
+          type: string
+          format: date
+          example: 2000-07-27
+        gender:
+          type: string
+          enum:
+            - male
+            - female
+            - diverse
+        weightInfo:
+          type: array
+          items:
+            properties:
+              weight:
+                type: number
+                format: float
+              date:
+                type: string
+                format: date
+            description: weight in kg, date format = YYYY.MM.DD
+        height:
+          description: height in cm
+          type: integer
+          example: 187
+    persons:
+      type: array
+      items:
+        allOf:
+          - $ref: '#/components/schemas/person'
+    baseEntity:
+      properties:
+        ID:
+          type: integer
+          nullable: false
+      required:
+        - ID
