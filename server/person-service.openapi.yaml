@@ -7,11 +7,11 @@ servers:
   - url: http://infinityapp-api.com
   - url: http://jonnef-api.com
 paths:
-  /person:
+  /persons:
     description: Person Resource
     get:
       tags:
-      - person
+      - persons
       description: Get a list of all Persons
       responses:
         200:
@@ -22,7 +22,7 @@ paths:
                 $ref: '#/components/schemas/persons'
     post:
       tags:
-        - person
+        - persons
       description: Add a new Person
       requestBody:
         content:
@@ -32,12 +32,12 @@ paths:
       responses:
         201:
           description: Successfully added
-  /person/{id}:
+  /persons/{id}:
     description: Get Person based on Path Parameter
     get:
       tags:
-      - person
-      description: Get a Person by ID
+      - persons
+      description: Get a Person by PEID
       parameters:
         - in: path
           name: id
@@ -53,8 +53,8 @@ paths:
                 $ref: '#/components/schemas/persons'
     patch:
       tags:
-      - person
-      description: Update a Person by ID
+      - persons
+      description: Update a Person by PEID
       parameters:
         - in: path
           name: id
@@ -63,15 +63,15 @@ paths:
             type: integer
       responses:
         200:
-          description: Data for Person with {ID} changed! 
+          description: Data for Person with {PEID} changed! 
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/person'
     delete:
       tags:
-        - person
-      description: Deleta a Person by ID
+        - persons
+      description: Deleta a Person by id
       parameters:
         - in: path
           name: id
@@ -134,6 +134,5 @@ components:
         id:
           type: integer
           nullable: false
-          example: 0
       required:
         - id

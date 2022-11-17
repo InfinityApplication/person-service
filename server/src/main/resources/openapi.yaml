@@ -7,7 +7,7 @@ servers:
 - url: http://infinityapp-api.com
 - url: http://jonnef-api.com
 paths:
-  /person:
+  /persons:
     description: Person Resource
     get:
       description: Get a list of all Persons
@@ -19,10 +19,10 @@ paths:
                 $ref: '#/components/schemas/persons'
           description: Success!
       tags:
-      - person
+      - persons
       x-accepts: application/json
       x-tags:
-      - tag: person
+      - tag: persons
     post:
       description: Add a new Person
       requestBody:
@@ -34,14 +34,14 @@ paths:
         "201":
           description: Successfully added
       tags:
-      - person
+      - persons
       x-content-type: application/json
       x-accepts: application/json
       x-tags:
-      - tag: person
-  /person/{id}:
+      - tag: persons
+  /persons/{id}:
     delete:
-      description: Deleta a Person by ID
+      description: Deleta a Person by id
       parameters:
       - explode: false
         in: path
@@ -54,13 +54,13 @@ paths:
         "200":
           description: Successfully deleted a Person
       tags:
-      - person
+      - persons
       x-accepts: application/json
       x-tags:
-      - tag: person
+      - tag: persons
     description: Get Person based on Path Parameter
     get:
-      description: Get a Person by ID
+      description: Get a Person by PEID
       parameters:
       - explode: false
         in: path
@@ -77,12 +77,12 @@ paths:
                 $ref: '#/components/schemas/persons'
           description: Success Response with Path Parameter
       tags:
-      - person
+      - persons
       x-accepts: application/json
       x-tags:
-      - tag: person
+      - tag: persons
     patch:
-      description: Update a Person by ID
+      description: Update a Person by PEID
       parameters:
       - explode: false
         in: path
@@ -97,12 +97,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/person'
-          description: "Data for Person with {ID} changed!"
+          description: "Data for Person with {PEID} changed!"
       tags:
-      - person
+      - persons
       x-accepts: application/json
       x-tags:
-      - tag: person
+      - tag: persons
 components:
   schemas:
     person:
@@ -146,7 +146,6 @@ components:
     baseEntity:
       properties:
         id:
-          example: 0
           nullable: false
           type: integer
       required:

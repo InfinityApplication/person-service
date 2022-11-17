@@ -1,6 +1,5 @@
 package org.openapitools.model;
 
-import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -9,16 +8,10 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import org.openapitools.model.PersonInfoWeightInfoInner;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.time.OffsetDateTime;
 import javax.validation.Valid;
-import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
-
-import java.util.*;
 import javax.annotation.Generated;
 
 /**
@@ -26,7 +19,7 @@ import javax.annotation.Generated;
  */
 
 @JsonTypeName("personInfo")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-11-15T19:48:45.783+01:00[Europe/Berlin]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-11-17T22:03:11.989+01:00[Europe/Berlin]")
 public class PersonInfo {
 
   @JsonProperty("username")

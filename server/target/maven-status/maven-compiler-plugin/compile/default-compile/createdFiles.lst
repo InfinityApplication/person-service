@@ -1,15 +1,13 @@
 org\openapitools\model\BaseEntity.class
-org\openapitools\api\PersonApiController.class
 org\openapitools\OpenApiGeneratorApplication.class
+org\openapitools\api\PersonsApi.class
+org\openapitools\api\PersonsApiController.class
 org\openapitools\RFC3339DateFormat.class
 org\openapitools\model\PersonInfoWeightInfoInner.class
-org\openapitools\api\PersonApi.class
 org\openapitools\model\Person$GenderEnum.class
 org\openapitools\model\PersonInfo.class
 org\openapitools\model\PersonInfo$GenderEnum.class
-org\openapitools\model\PersonsInner$GenderEnum.class
 org\openapitools\api\ApiUtil.class
 org\openapitools\configuration\SpringDocConfiguration.class
 org\openapitools\configuration\HomeController.class
 org\openapitools\model\Person.class
-org\openapitools\model\PersonsInner.class
