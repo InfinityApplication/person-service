@@ -141,7 +141,7 @@ components:
       type: object
     persons:
       items:
-        $ref: '#/components/schemas/persons_inner'
+        $ref: '#/components/schemas/person'
       type: array
     baseEntity:
       properties:
@@ -159,6 +159,3 @@ components:
         date:
           format: date
           type: string
-    persons_inner:
-      allOf:
-      - $ref: '#/components/schemas/person'

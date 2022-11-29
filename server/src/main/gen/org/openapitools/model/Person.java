@@ -1,26 +1,36 @@
 package org.openapitools.model;
 
+import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import org.openapitools.model.PersonInfoWeightInfoInner;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.time.OffsetDateTime;
 import javax.validation.Valid;
+import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
+
+import java.util.*;
 import javax.annotation.Generated;
 
 /**
- * PersonInfo
+ * Person
  */
 
-@JsonTypeName("personInfo")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-11-17T22:03:11.989+01:00[Europe/Berlin]")
-public class PersonInfo {
+@JsonTypeName("person")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-11-29T22:41:20.472+01:00[Europe/Berlin]")
+public class Person {
+
+  @JsonProperty("id")
+  private Integer id;
 
   @JsonProperty("username")
   private String username;
@@ -33,7 +43,7 @@ public class PersonInfo {
 
   @JsonProperty("dateOfBirth")
   @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-  private LocalDate dateOfBirth;
+  private Date dateOfBirth;
 
   /**
    * Gets or Sets gender
@@ -82,7 +92,26 @@ public class PersonInfo {
   @JsonProperty("height")
   private Integer height;
 
-  public PersonInfo username(String username) {
+  public Person id(Integer id) {
+    this.id = id;
+    return this;
+  }
+
+  /**
+   * Get id
+   * @return id
+  */
+  @NotNull 
+  @Schema(name = "id", required = true)
+  public Integer getId() {
+    return id;
+  }
+
+  public void setId(Integer id) {
+    this.id = id;
+  }
+
+  public Person username(String username) {
     this.username = username;
     return this;
   }
@@ -101,7 +130,7 @@ public class PersonInfo {
     this.username = username;
   }
 
-  public PersonInfo firstName(String firstName) {
+  public Person firstName(String firstName) {
     this.firstName = firstName;
     return this;
   }
@@ -120,7 +149,7 @@ public class PersonInfo {
     this.firstName = firstName;
   }
 
-  public PersonInfo lastName(String lastName) {
+  public Person lastName(String lastName) {
     this.lastName = lastName;
     return this;
   }
@@ -139,7 +168,7 @@ public class PersonInfo {
     this.lastName = lastName;
   }
 
-  public PersonInfo dateOfBirth(LocalDate dateOfBirth) {
+  public Person dateOfBirth(Date dateOfBirth) {
     this.dateOfBirth = dateOfBirth;
     return this;
   }
@@ -150,15 +179,15 @@ public class PersonInfo {
   */
   @Valid 
   @Schema(name = "dateOfBirth", example = "Thu Jul 27 02:00:00 CEST 2000", required = false)
-  public LocalDate getDateOfBirth() {
+  public Date getDateOfBirth() {
     return dateOfBirth;
   }
 
-  public void setDateOfBirth(LocalDate dateOfBirth) {
+  public void setDateOfBirth(Date dateOfBirth) {
     this.dateOfBirth = dateOfBirth;
   }
 
-  public PersonInfo gender(GenderEnum gender) {
+  public Person gender(GenderEnum gender) {
     this.gender = gender;
     return this;
   }
@@ -177,12 +206,12 @@ public class PersonInfo {
     this.gender = gender;
   }
 
-  public PersonInfo weightInfo(List<PersonInfoWeightInfoInner> weightInfo) {
+  public Person weightInfo(List<PersonInfoWeightInfoInner> weightInfo) {
     this.weightInfo = weightInfo;
     return this;
   }
 
-  public PersonInfo addWeightInfoItem(PersonInfoWeightInfoInner weightInfoItem) {
+  public Person addWeightInfoItem(PersonInfoWeightInfoInner weightInfoItem) {
     if (this.weightInfo == null) {
       this.weightInfo = new ArrayList<>();
     }
@@ -204,7 +233,7 @@ public class PersonInfo {
     this.weightInfo = weightInfo;
   }
 
-  public PersonInfo height(Integer height) {
+  public Person height(Integer height) {
     this.height = height;
     return this;
   }
@@ -231,25 +260,27 @@ public class PersonInfo {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    PersonInfo personInfo = (PersonInfo) o;
-    return Objects.equals(this.username, personInfo.username) &&
-        Objects.equals(this.firstName, personInfo.firstName) &&
-        Objects.equals(this.lastName, personInfo.lastName) &&
-        Objects.equals(this.dateOfBirth, personInfo.dateOfBirth) &&
-        Objects.equals(this.gender, personInfo.gender) &&
-        Objects.equals(this.weightInfo, personInfo.weightInfo) &&
-        Objects.equals(this.height, personInfo.height);
+    Person person = (Person) o;
+    return Objects.equals(this.id, person.id) &&
+        Objects.equals(this.username, person.username) &&
+        Objects.equals(this.firstName, person.firstName) &&
+        Objects.equals(this.lastName, person.lastName) &&
+        Objects.equals(this.dateOfBirth, person.dateOfBirth) &&
+        Objects.equals(this.gender, person.gender) &&
+        Objects.equals(this.weightInfo, person.weightInfo) &&
+        Objects.equals(this.height, person.height);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(username, firstName, lastName, dateOfBirth, gender, weightInfo, height);
+    return Objects.hash(id, username, firstName, lastName, dateOfBirth, gender, weightInfo, height);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class PersonInfo {\n");
+    sb.append("class Person {\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    username: ").append(toIndentedString(username)).append("\n");
     sb.append("    firstName: ").append(toIndentedString(firstName)).append("\n");
     sb.append("    lastName: ").append(toIndentedString(lastName)).append("\n");

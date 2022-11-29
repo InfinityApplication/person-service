@@ -110,7 +110,6 @@ components:
             - female
             - diverse
         weightInfo:
-          type: array
           items:
             properties:
               weight:
@@ -125,10 +124,8 @@ components:
           type: integer
           example: 187
     persons:
-      type: array
       items:
-        allOf:
-          - $ref: '#/components/schemas/person'
+        $ref: '#/components/schemas/person'
     baseEntity:
       properties:
         id:

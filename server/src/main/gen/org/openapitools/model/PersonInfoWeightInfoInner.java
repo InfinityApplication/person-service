@@ -1,13 +1,20 @@
 package org.openapitools.model;
 
+import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import java.time.LocalDate;
+import java.util.Date;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.time.OffsetDateTime;
 import javax.validation.Valid;
+import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
+
+import java.util.*;
 import javax.annotation.Generated;
 
 /**
@@ -16,7 +23,7 @@ import javax.annotation.Generated;
 
 @Schema(name = "personInfo_weightInfo_inner", description = "weight in kg, date format = YYYY.MM.DD")
 @JsonTypeName("personInfo_weightInfo_inner")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-11-17T22:03:11.989+01:00[Europe/Berlin]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-11-29T22:41:20.472+01:00[Europe/Berlin]")
 public class PersonInfoWeightInfoInner {
 
   @JsonProperty("weight")
@@ -24,7 +31,7 @@ public class PersonInfoWeightInfoInner {
 
   @JsonProperty("date")
   @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-  private LocalDate date;
+  private Date date;
 
   public PersonInfoWeightInfoInner weight(Float weight) {
     this.weight = weight;
@@ -45,7 +52,7 @@ public class PersonInfoWeightInfoInner {
     this.weight = weight;
   }
 
-  public PersonInfoWeightInfoInner date(LocalDate date) {
+  public PersonInfoWeightInfoInner date(Date date) {
     this.date = date;
     return this;
   }
@@ -56,11 +63,11 @@ public class PersonInfoWeightInfoInner {
   */
   @Valid 
   @Schema(name = "date", required = false)
-  public LocalDate getDate() {
+  public Date getDate() {
     return date;
   }
 
-  public void setDate(LocalDate date) {
+  public void setDate(Date date) {
     this.date = date;
   }
 
